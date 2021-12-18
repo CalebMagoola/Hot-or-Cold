@@ -1,0 +1,70 @@
+import java.util.Random;
+import java.util.Scanner;
+public class HotOrCold
+{
+    public static void main (String [] args)
+    {
+        Random rg = new Random();
+        Scanner scan = new Scanner(System.in);
+        
+        int attempts = 1;
+        int guess = 0;
+        int target = rg.nextInt(101);
+        String ans = "yes";
+        System.out.println("Welcome to Hot or Cold! How fast can you guess our random number between 1-100?");
+        while (ans.equals("yes"))
+        {
+        System.out.print("Guess " + attempts + ": ");
+        guess = scan.nextInt();
+      
+        if(guess == target)
+            {
+            if(attempts > 1)
+                System.out.println("You've got it! It took " + attempts + " tries!");
+            else
+                System.out.println("First Try!");
+            scan.nextLine();
+            System.out.println("Would you like to play again? (Yes/No): ");
+            ans = scan.nextLine();
+            attempts = 1;
+            target = rg.nextInt(101);
+            }        
+        else if ((target - guess >= 90 || guess - target >= 90))
+        {
+            System.out.println("You're freezing!");
+            attempts++;
+        }
+        else if ((target - guess >= 70 || guess - target >= 70) && (target - guess <= 90 || guess - target <= 90))
+        {
+            System.out.println("You're cold");
+            attempts++;
+        }
+        else if ((target - guess >= 50 || guess - target >= 50) && (target - guess <= 70 || guess - target <= 70))
+        {
+            System.out.println("You're coolish");
+            attempts++;
+        }
+        else if ((target - guess >= 25 || guess - target >= 25) && (target - guess <= 50 || guess - target <= 50))
+        {
+            System.out.println("You're pretty warm");
+            attempts++;
+        }
+        else if ((target - guess >= 10 || guess - target >= 10) && (target - guess <= 25 || guess - target <= 25))
+        {
+            System.out.println("You're hot!");
+            attempts++;
+        }
+        else if ((target - guess >= 5 || guess - target >= 5) && (target - guess <= 10 || guess - target <= 10))
+        {
+            System.out.println("You're HOT HOT!");
+            attempts++;
+        }
+        else
+        {
+            System.out.println("You're on FIRE!!!!!!");
+            attempts++;
+        }
+        }
+        System.out.println("Thanks for playing!");
+    }
+}
